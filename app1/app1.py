@@ -8,6 +8,10 @@ def get_definition(w):
     w = w.lower()
     if w in data:
         return data[w]
+    elif w.title() in data: 
+        return data[w.title()]
+    elif w.upper() in data: #in case user enters words like USA or NATO
+        return data[w.upper()]
     elif len(get_close_matches(w, data.keys(), cutoff=0.8)) > 0:
         answer = input("Did you mean %s instead? Type Y for yes or N for no: " % get_close_matches(w, data.keys(), cutoff=0.8)[0])
         if answer.lower() == "y":
